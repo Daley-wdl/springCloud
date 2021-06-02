@@ -1,0 +1,35 @@
+spring:
+  application:
+    name:
+      zuulService
+server:
+  port: 5555
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+zuul:
+  routes:
+    userService:
+      path: /user/**
+      url: www.baidu.com
+
+
+
+
