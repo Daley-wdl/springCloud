@@ -7,6 +7,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +30,10 @@ public class OrderController {
     @PostMapping("list")
     public User list(String id) {
         return orderService.getUser(id);
+    }
+
+    @GetMapping("testTomcat")
+    public String testTomcat(String name) {
+        return "hello " + name;
     }
 }
