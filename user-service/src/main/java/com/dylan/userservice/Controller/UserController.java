@@ -1,6 +1,7 @@
 package com.dylan.userservice.Controller;
 
 import com.dylan.userservice.VO.User;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
+@AllArgsConstructor
 @RequestMapping("user")
 public class UserController {
 
-    @PostMapping("get/{id}")
+
+    @GetMapping("get/{id}")
     public User get(@PathVariable("id") Integer id) {
         log.info("rpc requst id:{}", id);
         User user = new User();

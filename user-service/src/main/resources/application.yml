@@ -1,9 +1,14 @@
 spring:
   application:
     name: userService
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
 
-#server:
-#  port: 8081
+server:
+  port: 8081
 
 eureka:
   client:
@@ -13,3 +18,8 @@ eureka:
     fetch-registry: true
 #  instance:
 #    prefer-ip-address: true
+
+
+#logging:
+#  level:
+#    root: debug

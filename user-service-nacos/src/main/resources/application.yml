@@ -1,13 +1,79 @@
 
 server:
-  port: 8050
+  port: 8052
+
+# 这里配置暴露端点是为了访问到 hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 
+#logging:
+#  level:
+#    root: debug
+
+
+
+#        server-addr: 127.0.0.1:8848
 spring:
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+#        namespace: test
+      config:
+        server-addr: 127.0.0.1:8848
+#        shared-dataids: xiaozao-local.yaml
+#        refreshable-dataids: xiaozao-local.yaml
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+
 
   application:
     name: user-service-nacos
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+#    url: jdbc:mysql://172.16.14.136:3301/xiaozao?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&tinyInt1isBit=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+#    username: test_morning
+#    password: testchaiku
+    username: root
+    password: 1234567
+
+
+
+#feign:
+#  httpclient:
+#    connection-timeout: 5000
+
+#feign 默认继承了 Hystrix，但是高版本feign关闭了 Hystrix 熔断器
+feign:
+  hystrix:
+    enabled: true #开启熔断支持
+
+# dashboard 白名单
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+
+
+
+#seata:
+#  enabled: true
+##  application-id: applicationName
+#  tx-service-group: my_test_tx_group
+#  service:
+#    vgroup-mapping:
+#      my_test_tx_group: default
+#    grouplist:
+#      default: 169.254.0.1:8091
+#    enable-degrade: false
+#    disable-global-transaction: false

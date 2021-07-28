@@ -1,0 +1,7 @@
+package com.dylan.userservicenacos.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.dylan.account.entity.Account;
+
+public interface IAccountService extends IService<Account> {
+}
